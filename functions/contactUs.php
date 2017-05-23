@@ -6,23 +6,48 @@ function clean($string){
 function redirect($location){
     header("Location: {$location}"); //for redirecting pages
 }
-// function set_message($message){
+function set_message_error($error_message){
 
-// 	if (!empty($message)) {
-// 		$_SESSION['message'] = $message;
-// 	}
-// 	else{
-// 		$message = "";
-// 	}
-// }
+	if (!empty($error_message)) {
+		$_SESSION['error_message'] = "
+    <div class='alert alert-danger alert-dismissible text-center' data-auto-dismiss id='alerts' role='alert'>
+        <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+        <strong>Warning!</strong>
+        {$error_message}
+    </div>
+    ";
+	}
+	else{
+		$error_message = "";
+	}
+}
+function set_message_success($success_message){
 
-// function display_message(){
+    if (!empty($success_message)) {
+        $_SESSION['success_message'] = "
+    <div class='alert alert-success alert-dismissible text-center' data-auto-dismiss id='alerts' role='alert'>
+        <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+        <strong>Success!</strong>
+        {$success_message}
+    </div>
+    ";
+    }
+    else{
+        $success_message = "";
+    }
+}
 
-// 	if (isset($_SESSION['message'])) {
-// 		echo $_SESSION['message'];
-// 		unset($_SESSION['message']);
-// 	}
-// }
+function display_message(){
+
+	if (isset($_SESSION['success_message'])) {
+		echo $_SESSION['success_message'];
+		unset($_SESSION['success_message']);
+	}
+    if (isset($_SESSION['error_message'])) {
+        echo $_SESSION['error_message'];
+        unset($_SESSION['error_message']);
+    }
+}
 function validation_errors($error_message){
 
     //for displaying alerts
@@ -48,7 +73,6 @@ function validation_success($success_message){
     return $alert_success_message;
 }
 
-function contactUs(){
 		if(isset($_POST['kp_contact'])){
 			$candName       = clean($_POST['kp_candid_name']);
 			$resName        = clean($_POST['kp_restaurant_name']);
@@ -61,12 +85,11 @@ function contactUs(){
 	                VALUES ('$candName', '$resName', '$cityName','$email', '$phoneNumber', '$message')";
 			$kp_run_sql = query($kp_insert_contact);
 			if ($kp_run_sql) {
-				echo validation_success("Thanks for contacting us we will get back to you soon");
+				set_message_success("Thanks for contacting us we will get back to you soon");
 			
 			}
 			else{
-				echo validation_errors("Sorry we are unable to recieve your request");	
+				set_message_error("Sorry we are unable to recieve your request");	
 			}
 		}
-}
 ?>

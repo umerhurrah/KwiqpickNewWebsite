@@ -101,7 +101,7 @@
 <section class="container kwiqpick-section kwiqpick-text-section">
     <div class="row">
     <?php
-    contactUs();
+    display_message();
     ?>
         <div class="col-md-10 col-md-offset-1 text-justify">
             <h4>Fill in the details and we will get back to you</h4>
