@@ -1,3 +1,6 @@
+<?php include("functions/contactUs.php") ?>
+<?php //$alert_error_message = ''; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +23,7 @@
     <link rel="stylesheet" href="css/style.css">
     <!--Bootstrap Validator-->
     <link href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css">
+    
 
 </head>
 <body>
@@ -96,42 +100,45 @@
 <!--Start Contact Form section-->
 <section class="container kwiqpick-section kwiqpick-text-section">
     <div class="row">
+    <?php
+    contactUs();
+    ?>
         <div class="col-md-10 col-md-offset-1 text-justify">
             <h4>Fill in the details and we will get back to you</h4>
-            <form class="clearfix" role="form">
+            <form class="clearfix" role="form" action="" method="POST">
                 <div class="row">
                     <div class="form-group">
                         <div class="input">
-                            <input class="input_fields" placeholder="Name" type="text">
+                            <input class="input_fields" placeholder="Name" type="text" name="kp_candid_name" required autocomplete="on">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input">
-                            <input class="input_fields" placeholder="Restaurant" type="text">
+                            <input class="input_fields" placeholder="Restaurant" type="text" name="kp_restaurant_name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input">
-                            <input class="input_fields" placeholder="City" type="text">
+                            <input class="input_fields" placeholder="City" type="text" name="kp_city_name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input">
-                            <input class="input_fields" placeholder="Email" type="email">
+                            <input class="input_fields" placeholder="Email" type="email" name="kp_email" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input">
-                            <input class="input_fields" placeholder="Mobile Number" type="text">
+                            <input class="input_fields" placeholder="Mobile Number" type="text" name="kp_phone_num" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input">
-                            <textarea class="input_fields" placeholder="Message" rows="10" cols="30"></textarea>
+                            <textarea class="input_fields" placeholder="Message" rows="10" cols="30" name="kp_message" required></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn button-custom pull-right" value="Contact Us">
+                        <input type="submit" class="btn button-custom pull-right" value="Contact Us" name="kp_contact">
                     </div>
                 </div>
             </form>
